@@ -4,7 +4,7 @@
 module utility.validator {
     requires static lombok;
 
-    requires domain.exceptions;
+    requires utility.domain.exception;
 
     requires jakarta.validation;
 

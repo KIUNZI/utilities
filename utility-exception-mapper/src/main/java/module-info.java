@@ -6,8 +6,9 @@
  * structured API error responses.</p>
  */
 module utility.exception.mapper {
-    requires domain.exceptions;
+    requires utility.domain.exception;
     requires utility.validator;
+
     requires io.quarkus.security.api;
     requires io.smallrye.common.constraint;
     requires io.smallrye.mutiny;
@@ -16,4 +17,6 @@ module utility.exception.mapper {
     requires jakarta.ws.rs;
     requires org.modelmapper;
     requires quarkus.core;
+
+    exports uk.co.jasonmarston.kiunzi.utility.exception.mapper.response;
 }

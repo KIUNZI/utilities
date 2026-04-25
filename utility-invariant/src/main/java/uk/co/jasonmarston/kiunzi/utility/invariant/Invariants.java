@@ -1,4 +1,4 @@
-package uk.co.jasonmarston.kiunzi.utility.validator;
+package uk.co.jasonmarston.kiunzi.utility.invariant;
 
 /**
  * Utility interface providing static checks for domain invariants.

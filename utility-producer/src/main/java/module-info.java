@@ -4,10 +4,13 @@
 module utility.producer {
     requires utility.validator;
 
+    requires jakarta.annotation;
     requires jakarta.cdi;
     requires jakarta.validation;
+    requires org.jboss.logging;
     requires org.modelmapper;
     requires org.modelmapper.module.record;
+    requires quarkus.core;
 
     exports uk.co.jasonmarston.kiunzi.utility.producer.annotation;
 }
