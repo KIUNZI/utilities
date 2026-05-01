@@ -1,5 +1,5 @@
 plugins {
-    id("io.quarkus") version "3.32.3" apply false
+    id("io.quarkus") apply false
     id("io.freefair.lombok") version "9.2.0" apply false
     id("org.kordamp.gradle.jandex") version "2.3.0" apply false
     id("org.gradlex.extra-java-module-info") version "1.14" apply false
