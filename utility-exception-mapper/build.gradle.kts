@@ -2,6 +2,8 @@ plugins {
     id("uk.co.jasonmarston.project.standards.quarkus-library")
 }
 
+description = "Exception-to-response mapping utilities for REST services."
+
 dependencies {
     implementation(project(":utility-domain-exception"))
     implementation(project(":utility-validator"))
