@@ -10,7 +10,7 @@ module utility.producer {
     requires org.jboss.logging;
     requires org.modelmapper;
     requires org.modelmapper.module.record;
-    requires quarkus.core;
+    requires io.quarkus.core;
 
     exports uk.co.jasonmarston.kiunzi.utility.producer.annotation;
 }

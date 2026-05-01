@@ -16,7 +16,7 @@ module utility.exception.mapper {
     requires jakarta.validation;
     requires jakarta.ws.rs;
     requires org.modelmapper;
-    requires quarkus.core;
+    requires io.quarkus.core;
 
     exports uk.co.jasonmarston.kiunzi.utility.exception.mapper.response;
 }
