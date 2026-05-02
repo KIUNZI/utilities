@@ -14,6 +14,7 @@ concurrency:
 
 jobs:
   build-and-test:
+    name: CI (Pull Request)
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
