@@ -12,6 +12,7 @@ permissions:
 
 jobs:
   release:
+    name: Release
     if: >-
       ${{
         github.event.workflow_run.conclusion == 'success' &&
