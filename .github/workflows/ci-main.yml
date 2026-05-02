@@ -1,4 +1,4 @@
-name: CI (Main Post-Merge Build)
+name: CI (Main Build)
 
 on:
   push:
@@ -55,4 +55,5 @@ jobs:
 
       - name: Publish artifacts
         run: ./gradlew --no-daemon publish
+
 
