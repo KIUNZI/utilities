@@ -43,4 +43,3 @@ jobs:
 
       - name: Build and test
         run: ./gradlew --no-daemon clean build
-

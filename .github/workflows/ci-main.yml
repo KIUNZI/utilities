@@ -55,5 +55,3 @@ jobs:
 
       - name: Publish artifacts
         run: ./gradlew --no-daemon publish
-
-
