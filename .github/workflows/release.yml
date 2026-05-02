@@ -29,12 +29,19 @@ jobs:
         id: resolve_tag
         run: |
           git fetch --force --tags --no-recurse-submodules
-          TAG="$(git tag --points-at "${{ github.event.workflow_run.head_sha }}" | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+(-rc\.[0-9]+)?$' | sort | head -n1 || true)"
+          mapfile -t TAGS < <(git tag --points-at "${{ github.event.workflow_run.head_sha }}" | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+(-rc\.[0-9]+)?$' | sort || true)
 
-          if [[ -z "$TAG" ]]; then
+          if [[ ${#TAGS[@]} -eq 0 ]]; then
             echo "No valid release tag found for SHA ${{ github.event.workflow_run.head_sha }}"
             exit 1
           fi
+
+          if [[ ${#TAGS[@]} -gt 1 ]]; then
+            echo "Multiple valid release tags found for SHA ${{ github.event.workflow_run.head_sha }}: ${TAGS[*]}"
+            exit 1
+          fi
+
+          TAG="${TAGS[0]}"
 
           echo "tag=$TAG" >> "$GITHUB_OUTPUT"
 
@@ -43,6 +50,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           TAG="${{ steps.resolve_tag.outputs.tag }}"
+
+          if gh release view "$TAG" > /dev/null 2>&1; then
+            echo "Release $TAG already exists; skipping create."
+            exit 0
+          fi
 
           if [[ "$TAG" == *"-rc."* ]]; then
             echo "Creating pre-release for $TAG"

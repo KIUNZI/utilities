@@ -1,23 +1,16 @@
-name: CI (Main Post-Merge Build)
+name: CI (Pull Request)
 
 on:
-  push:
+  pull_request:
     branches:
       - main
-    tags-ignore:
-      - '*'
-    paths-ignore:
-      - '.github/**'
-      - '.gitattributes'
-      - '.gitignore'
 
 permissions:
   contents: read
-  packages: write
 
 concurrency:
-  group: ci-utilities-main
-  cancel-in-progress: false
+  group: ci-utilities-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
   build-and-test:
@@ -28,8 +21,6 @@ jobs:
       ARTIFACTS_REPO_USER: ${{ secrets.ARTIFACTS_REPO_USER }}
       ARTIFACTS_REPO_TOKEN: ${{ secrets.ARTIFACTS_REPO_TOKEN }}
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-      QUARKUS_CONTAINER_IMAGE_USERNAME: jasonmarstoncouk
-      QUARKUS_CONTAINER_IMAGE_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - name: Checkout
@@ -51,8 +42,5 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build and test
-        run: ./gradlew --no-daemon clean build -Dquarkus.container-image.build=true -Dquarkus.container-image.push=true
-
-      - name: Publish artifacts
-        run: ./gradlew --no-daemon publish
+        run: ./gradlew --no-daemon clean build
 

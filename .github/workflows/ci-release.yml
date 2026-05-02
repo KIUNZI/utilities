@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: read
+  packages: write
 
 concurrency:
   group: ci-utilities-release-tags
@@ -21,6 +22,8 @@ jobs:
       ARTIFACTS_REPO_USER: ${{ secrets.ARTIFACTS_REPO_USER }}
       ARTIFACTS_REPO_TOKEN: ${{ secrets.ARTIFACTS_REPO_TOKEN }}
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+      QUARKUS_CONTAINER_IMAGE_USERNAME: jasonmarstoncouk
+      QUARKUS_CONTAINER_IMAGE_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - name: Validate tag format
@@ -33,6 +36,14 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Verify tagged commit is on main
+        run: |
+          git fetch --no-tags origin +refs/heads/main:refs/remotes/origin/main
+          if ! git merge-base --is-ancestor "$GITHUB_SHA" "origin/main"; then
+            echo "Tag ${GITHUB_REF#refs/tags/} points to commit $GITHUB_SHA which is not on main."
+            exit 1
+          fi
 
       - name: Validate Gradle wrapper
         uses: gradle/actions/wrapper-validation@v4
@@ -50,7 +61,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build and test
-        run: ./gradlew --no-daemon clean build
+        run: ./gradlew --no-daemon clean build -Dquarkus.container-image.build=true -Dquarkus.container-image.push=true
 
       - name: Generate Javadocs
         run: ./gradlew --no-daemon javadoc
