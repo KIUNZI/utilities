@@ -1,56 +1,210 @@
-<!doctype html>
-<html lang="en">
-  <head>
+<!DOCTYPE html>
+<html lang="en-gb">
+<head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Build Reports</title>
-    <link rel="stylesheet" href="./style.css">
-  </head>
-  <body>
-    <header class="page-header">
-      <h1>Build Reports</h1>
-      <p class="subtitle">CI artefacts generated from <strong>main</strong></p>
-    </header>
-
-    <main class="container">
-      <section>
-        <h2>Test Reports</h2>
-        <ul class="card-grid">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Kiunzi Framework</title>
+    <meta name="description" content="Kiunzi Framework">
+    <meta name="generator" content="Publii Open-Source CMS for Static Site">
+    <link rel="stylesheet"
+          href="https://kiunzi.jasonmarston.co.uk/media/plugins/mermaidSupport/mermaid-invert-filter.css">
+    <link rel="stylesheet" href="https://kiunzi.jasonmarston.co.uk/media/plugins/syntaxHighlighter/prism-black.css">
+    <link rel="canonical" href="https://kiunzi.jasonmarston.co.uk/utilitites/">
+    <link rel="alternate" type="application/atom+xml" href="https://kiunzi.jasonmarston.co.uk/feed.xml"
+          title="Kiunzi Framework - RSS">
+    <link rel="alternate" type="application/json" href="https://kiunzi.jasonmarston.co.uk/feed.json"
+          title="Kiunzi Framework - JSON">
+    <meta property="og:title" content="Utilities">
+    <meta property="og:site_name" content="Kiunzi Framework">
+    <meta property="og:description" content="Kiunzi Framework">
+    <meta property="og:url" content="https://kiunzi.jasonmarston.co.uk/utilities/">
+    <meta property="og:type" content="article">
+    <link rel="stylesheet"
+          href="https://kiunzi.jasonmarston.co.uk/assets/css/style.css?v=6cda5ead5ff71b326ee8924fc52de107">
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://kiunzi.jasonmarston.co.uk/utilities/"
+        },
+        "headline": "Utilities",
+        "datePublished": "2026-04-26T16:54+01:00",
+        "dateModified": "2026-04-29T16:00+01:00",
+        "description": "Kiunzi Framework",
+        "author": {
+            "@type": "Person",
+            "name": "Jason Marston",
+            "url": "https://kiunzi.jasonmarston.co.uk/authors/jason-marston/"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Jason Marston"
+        }
+    }</script>
+    <noscript>
+        <style>img[loading] {
+            opacity: 1;
+        }</style>
+    </noscript>
+</head>
+<body class="page-template">
+<header class="top js-header"><a class="logo" href="https://kiunzi.jasonmarston.co.uk/">Kiunzi Framework</a>
+    <nav class="navbar js-navbar">
+        <button class="navbar__toggle js-toggle" aria-label="Menu" aria-haspopup="true" aria-expanded="false"><span
+                class="navbar__toggle-box"><span class="navbar__toggle-inner">Menu</span></span></button>
+        <ul class="navbar__menu">
+            <li class="active"><a href="https://kiunzi.jasonmarston.co.uk/" target="_self">Home</a></li>
+            <li><a href="https://kiunzi.jasonmarston.co.uk/blog/index.html" target="_self">Blog</a></li>
+            <li><a href="https://kiunzi.jasonmarston.co.uk/authors/jason-marston/" target="_self">Author</a></li>
+            <li><span class="obfuscated-email" data-user="nosaj" data-domain="ku.oc.notsramnosaj" data-type="mailto">Contact</span>
+            </li>
+            <li><a href="https://kiunzi.jasonmarston.co.uk/about/" target="_self">About</a></li>
+        </ul>
+    </nav>
+    <div class="search">
+        <div class="search__overlay js-search-overlay">
+            <div class="wrapper search__overlay-inner">
+                <form action="https://kiunzi.jasonmarston.co.uk/search.html" class="search__form"><input
+                        class="search__input" type="search" name="q" placeholder="search..." aria-label="search...">
+                </form>
+            </div>
+        </div>
+        <button class="search__btn btn--icon js-search-btn" aria-label="Search">
+            <svg height="18" width="18" role="presentation" focusable="false">
+                <use xlink:href="https://kiunzi.jasonmarston.co.uk/assets/svg/svg-map.svg#search"/>
+            </svg>
+        </button>
+    </div>
+</header>
+<main class="page">
+    <article class="content">
+        <div class="hero hero--noimage">
+            <header class="hero__content">
+                <div class="wrapper"><h1>Projects</h1></div>
+            </header>
+        </div>
+        <div class="entry-wrapper content__entry">
+            <div>
+                <main class="container page-cards">
+                    <section>
+                        <h2>Test Reports</h2>
+                        <ul class="card-grid">
 {{#testReports}}
-          <li class="card">
-            <a href="./test-report/{{module}}/">
-              <span class="card-title">{{module}}</span>
-              <span class="card-meta">{{description}}</span>
-            </a>
-          </li>
+                            <li class="card">
+                                <a href="./test-report/{{module}}/">
+                                    <span class="card-title">{{module}}</span>
+                                    <span class="card-meta">{{description}}</span>
+                                </a>
+                            </li>
 {{/testReports}}
-        </ul>
-      </section>
-
-      <section>
-        <h2>Public API Documentation</h2>
-        <ul class="card-grid">
-{{#javadocs}}
-          <li class="card">
-            <a href="./javadocs/{{module}}/">
-              <span class="card-title">{{module}}</span>
-              <span class="card-meta">{{description}}</span>
-            </a>
-          </li>
-{{/javadocs}}
-        </ul>
-      </section>
-    </main>
-
-    <footer>
-      <p>Generated by GitHub Actions · <time id="ts"></time></p>
-    </footer>
-
-    <script>
-      document.getElementById("ts").textContent =
-        new Date().toISOString().replace("T", " ").replace("Z", " UTC");
-    </script>
-  </body>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Public API Documentation</h2>
+                        <ul class="card-grid">
+{{#testReports}}
+                            <li class="card">
+                                <a href="./javadocs/{{module}}/">
+                                    <span class="card-title">{{module}}</span>
+                                    <span class="card-meta">{{description}}</span>
+                                </a>
+                            </li>
+{{/testReports}}
+                        </ul>
+                    </section>
+                </main>
+            </div>
+        </div>
+    </article>
+</main>
+<footer class="footer">
+    <div class="wrapper">
+        <div class="footer__copyright"><p>Kiunzi Framework · Open source · MIT licence</p>
+            <p>Powered by Publii · Hosted on GitHub Pages</p></div>
+        <button id="backToTop" class="footer__bttop" aria-label="Back to top" title="Back to top">
+            <svg width="20" height="20">
+                <use xlink:href="https://kiunzi.jasonmarston.co.uk/assets/svg/svg-map.svg#toparrow"/>
+            </svg>
+        </button>
+    </div>
+</footer>
+<script defer="defer"
+        src="https://kiunzi.jasonmarston.co.uk/assets/js/scripts.min.js?v=dafec4f87fead6718cb125f0b0fc8441"></script>
+<script>window.publiiThemeMenuConfig = {
+    mobileMenuMode: 'sidebar',
+    animationSpeed: 300,
+    submenuWidth: 'auto',
+    doubleClickTime: 500,
+    mobileMenuExpandableSubmenus: true,
+    relatedContainerForOverlayMenuSelector: '.top'
+};</script>
+<script>var images = document.querySelectorAll('img[loading]');
+for (var i = 0; i < images.length; i++) {
+    if (images[i].complete) {
+        images[i].classList.add('is-loaded');
+    } else {
+        images[i].addEventListener('load', function () {
+            this.classList.add('is-loaded');
+        }, false);
+    }
+}</script>
+<script>'use strict';
+document.addEventListener('DOMContentLoaded', function () {
+    var obfElements = document.querySelectorAll('.obfuscated-email');
+    obfElements.forEach(function (elem) {
+        var dataType = elem.getAttribute('data-type');
+        var encodedEmail = elem.getAttribute('data-email');
+        var user = elem.getAttribute('data-user');
+        var domain = elem.getAttribute('data-domain');
+        var decodedEmail = '';
+        if (user && domain) {
+            decodedEmail = user.split('').reverse().join('') + '@' + domain.split('').reverse().join('');
+        } else if (encodedEmail) {
+            const parts = encodedEmail.split('@');
+            if (parts.length === 2) {
+                decodedEmail = parts[0].split('').reverse().join('') + '@' + parts[1].split('').reverse().join('');
+            } else {
+                decodedEmail = encodedEmail;
+            }
+        }
+        if (dataType === 'mailto') {
+            var originalText = elem.textContent.trim();
+            var a = document.createElement('a');
+            a.href = 'mailto:' + decodedEmail;
+            if (elem.classList.length > 0) {
+                a.className = elem.className;
+            }
+            if (originalText === '') {
+                a.textContent = decodedEmail;
+            } else {
+                a.textContent = originalText;
+            }
+            elem.parentNode.replaceChild(a, elem);
+        } else if (dataType === 'text') {
+            var textNode = document.createTextNode(decodedEmail);
+            elem.parentNode.replaceChild(textNode, elem);
+        }
+    });
+});</script>
+<script>(function () {
+    var originalTitle = document.title;
+    var timeout;
+    document.addEventListener("visibilitychange", function () {
+        if (document.hidden) {
+            document.title = "👀 We miss you! Come back!";
+        } else {
+            clearTimeout(timeout);
+            document.title = "🎉 Welcome back!";
+            setTimeout(function () {
+                document.title = originalTitle;
+            }, 2000);
+        }
+    });
+})();</script>
+<script src="https://kiunzi.jasonmarston.co.uk/media/plugins/mermaidSupport/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad: true, theme: "base"});</script>
+<script defer="defer" src="https://kiunzi.jasonmarston.co.uk/media/plugins/syntaxHighlighter/prism.js"></script>
+</body>
 </html>
-
-
