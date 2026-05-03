@@ -6,6 +6,7 @@ on:
       - CI (Release Tag Build)
     types:
       - completed
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -54,7 +55,6 @@ jobs:
         run: |
           rm -rf _site
           mkdir -p _site/test-report _site/javadocs
-          cp .github/assets/pages/style.css _site/style.css
           python3 .github/assets/pages/build_page_data.py
 
       - name: Render index from Mustache template
