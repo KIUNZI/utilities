@@ -1,5 +1,11 @@
 plugins {
-    id("io.quarkus") apply false
+    val quarkusVersion = File("gradle.properties")
+        .readLines()
+        .find { it.startsWith("version.quarkus.platform=") }
+        ?.substringAfter("=")
+        ?: error("version.quarkus.platform not found in gradle.properties")
+
+    id("io.quarkus") version quarkusVersion apply false
     id("io.freefair.lombok") version "9.5.0" apply false
     id("org.kordamp.gradle.jandex") version "2.3.0" apply false
     id("org.gradlex.extra-java-module-info") version "1.14" apply false
