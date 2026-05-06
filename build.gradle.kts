@@ -3,6 +3,7 @@ plugins {
         .readLines()
         .find { it.startsWith("version.quarkus.platform=") }
         ?.substringAfter("=")
+        ?.trim()
         ?: error("version.quarkus.platform not found in gradle.properties")
 
     id("io.quarkus") version quarkusVersion apply false
